@@ -4,11 +4,14 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/stocks/<tickerlist>')
 def stocks():
-	tickers = ['AAPL','CRM','FB','TWTR']
+	tickers = tickerlist.split('+')
 	retVal = ''
 	for ticker in tickers:
 		csvData = requests.get('http://finance.yahoo.com/d/quotes.csv?s=' + ticker + '&f=sap2')
 		retVal = retVal + csvData.text + '\n'
 	return retVal
+
+if __name__ == '__main__':
+    app.run()
