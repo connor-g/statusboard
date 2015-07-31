@@ -20,7 +20,7 @@ app.logger.addHandler(handler)
 
 @app.route('/stocks/<tickerList>')
 def stocks(tickerList):
-	tickers = tickerlist.split('+')
+	tickers = tickerList.split('+')
 	retVal = ''
 	for ticker in tickers:
 		csvData = requests.get('http://finance.yahoo.com/d/quotes.csv?s=' + ticker + '&f=sap2')
