@@ -18,15 +18,14 @@ handler.formatter = logging.Formatter(
 )
 app.logger.addHandler(handler)
 
-@app.route('/stocks/<ticker>')
-def stocks(ticker):
-	#tickers = tickerlist.split('+')
-	#retVal = ''
-	#for ticker in tickers:
-	csvData = requests.get('http://finance.yahoo.com/d/quotes.csv?s=' + ticker + '&f=sap2')
-	#retVal = retVal + csvData.text + '\n'
-	#return retVal
-	return csvData.text
+@app.route('/stocks/<tickerList>')
+def stocks(tickerList):
+	tickers = tickerlist.split('+')
+	retVal = ''
+	for ticker in tickers:
+		csvData = requests.get('http://finance.yahoo.com/d/quotes.csv?s=' + ticker + '&f=sap2')
+		retVal = retVal + csvData.text + '\n'
+	return retVal
 	
 @app.route('/')
 def root():
