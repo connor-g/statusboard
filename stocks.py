@@ -6,4 +6,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def stocks():
-	return 'Hello stocks!'
+	tickers = ['AAPL','CRM']
+	csvData = requests.get('http://finance.yahoo.com/d/quotes.csv?s=' + '+'.join(tickers) + '&f=nap2')
+	return csvData.text
