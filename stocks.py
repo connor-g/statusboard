@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def stocks():
-	tickers = ['AAPL','CRM']
+	tickers = ['AAPL','CRM','FB','TWTR']
 	retVal = ''
 	for ticker in tickers:
 		csvData = requests.get('http://finance.yahoo.com/d/quotes.csv?s=' + ticker + '&f=sap2')
