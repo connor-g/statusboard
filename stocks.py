@@ -12,6 +12,10 @@ def stocks():
 	csvData = requests.get('http://finance.yahoo.com/d/quotes.csv?s=' + ticker + '&f=sap2')
 	retVal = retVal + csvData.text + '\n'
 	return retVal
+	
+@app.route('/')
+def stocks():
+	return "Hello world!"
 
 if __name__ == '__main__':
     app.run()
