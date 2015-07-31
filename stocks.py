@@ -21,11 +21,19 @@ app.logger.addHandler(handler)
 @app.route('/stocks/<tickerList>')
 def stocks(tickerList):
 	tickers = tickerList.split('+')
-	retVal = ''
+	table = '<table>\n'
 	for ticker in tickers:
 		csvData = requests.get('http://finance.yahoo.com/d/quotes.csv?s=' + ticker + '&f=sap2')
-		retVal = retVal + csvData.text + '\n'
-	return retVal
+		data = csvData.text.split(',')
+		symbol = data[0].strip().strip('\"')
+		price = data[1]
+		change = data[2].strip().strip('\"')
+		table = table + '<tr><td>' + symbol + '</td><td>' + price + '</td>'
+		color = 'rgb(0,186,0)'
+		if '-' in change:
+			color = 'rgb(255,48,0)'
+		table = table + '<td style=\"color:' + color + '\">' + change + '</td></tr>\n'
+	return table + '</table>'
 	
 @app.route('/')
 def root():
