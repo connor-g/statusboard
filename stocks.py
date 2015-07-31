@@ -14,7 +14,7 @@ def stocks():
 	return retVal
 	
 @app.route('/')
-def stocks():
+def root():
 	return "Hello world!"
 
 if __name__ == '__main__':
