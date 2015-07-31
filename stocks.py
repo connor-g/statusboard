@@ -8,4 +8,4 @@ app = Flask(__name__)
 def stocks():
 	tickers = ['AAPL','CRM']
 	csvData = requests.get('http://finance.yahoo.com/d/quotes.csv?s=' + '+'.join(tickers) + '&f=nap2')
-	return '40%,30%,30%,\n'+csvData.text
+	return '50%,25%,25%,\n'+csvData.text
