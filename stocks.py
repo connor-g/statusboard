@@ -19,7 +19,7 @@ handler.formatter = logging.Formatter(
 app.logger.addHandler(handler)
 
 @app.route('/stocks/<ticker>')
-def stocks():
+def stocks(ticker):
 	#tickers = tickerlist.split('+')
 	#retVal = ''
 	#for ticker in tickers:
