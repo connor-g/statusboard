@@ -27,7 +27,7 @@ def stocks(tickerList):
 		data = csvData.text.split(',')
 		symbol = data[0].strip().strip('\"')
 		price = '{0:.2}'.format(data[1])
-		change = data[2].strip().strip('\"')
+		change = '{0:.2}%'.format(float(data[2].strip().strip('\"%')))
 		table = table + '<tr><td>' + symbol + '</td><td>' + price + '</td>'
 		color = 'rgb(0,186,0)'
 		if '-' in change:
