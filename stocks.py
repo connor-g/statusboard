@@ -26,13 +26,13 @@ def stocks(tickerList):
 		csvData = requests.get('http://finance.yahoo.com/d/quotes.csv?s=' + ticker + '&f=sap2')
 		data = csvData.text.split(',')
 		symbol = data[0].strip().strip('\"')
-		price = '{0:.2}'.format(data[1])
-		change = '{0:.2}%'.format(float(data[2].strip().strip('\"%')))
-		table = table + '<tr><td>' + symbol + '</td><td>' + price + '</td>'
+		price = float(data[1])
+		change = float(data[2].strip().strip('\"%'))
+		table = table + '<tr><td>' + symbol + '</td><td>' + '{0:.2f}'.format(price) + '</td>'
 		color = 'rgb(0,186,0)'
-		if '-' in change:
+		if change < 0:
 			color = 'rgb(255,48,0)'
-		table = table + '<td style=\"color:' + color + '\">' + change + '</td></tr>\n'
+		table = table + '<td style=\"color:' + color + '\">' + '{0:.2f}'.format(change) + '%</td></tr>\n'
 	return table + '</table>'
 	
 @app.route('/')
