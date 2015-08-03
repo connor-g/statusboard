@@ -26,7 +26,7 @@ def stocks(tickerList):
 		csvData = requests.get('http://finance.yahoo.com/d/quotes.csv?s=' + ticker + '&f=sap2')
 		data = csvData.text.split(',')
 		symbol = data[0].strip().strip('\"')
-		price = data[1]
+		price = '{0:.2}'.format(data[1])
 		change = data[2].strip().strip('\"')
 		table = table + '<tr><td>' + symbol + '</td><td>' + price + '</td>'
 		color = 'rgb(0,186,0)'
