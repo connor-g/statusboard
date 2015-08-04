@@ -33,7 +33,7 @@ def stocks(tickerList):
 		if change < 0:
 			color = 'rgb(255,48,0)'
 		table = table + '<td style=\"color:' + color + '\">' + '{0:.2f}'.format(change) + '%</td></tr>\n'
-	return table + '</table>'
+	return table + '<meta data-refresh-every-n-seconds="60"></table>'
 	
 @app.route('/')
 def root():
